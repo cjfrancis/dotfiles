@@ -1,0 +1,8 @@
+if ! which git >/dev/null; then
+  if [[ "${OS}" == Darwin ]]; then
+    if ! which git > /dev/null; then
+      xcode-select --install
+      fail 'Xcode Command Line Tools must already be installed'
+    fi
+  fi
+fi

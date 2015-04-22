@@ -1,0 +1,31 @@
+readonly AUTOPKG_REPOS=(
+  recipes
+  triti/autopkg-recipes.git
+  rtrouton-recipes
+  jaharmi-recipes
+  jazzace-recipes
+)
+
+if ! which autopkg >/dev/null; then
+  info 'Downloading AutoPkg...'
+  if curl -L -o /tmp/autopkg.pkg https://github.com/autopkg/autopkg/releases/download/v0.4.2/autopkg-0.4.2.pkg; then
+    success 'Downloaded AutoPkg'
+  else
+    fail 'Error downloading AutoPkg'
+  fi
+
+  info 'Installing AutoPkg...'
+  user 'Installer requires admin password'
+  if sudo installer -pkg /tmp/autopkg.pkg -target /; then
+    success 'Installed AutoPkg'
+  else
+    fail 'Error installing AutoPkg'
+  fi
+fi
+
+info 'Adding AutoPkg repos...'
+if autopkg repo-add "${AUTOPKG_REPOS[@]}" >/dev/null; then
+  success 'Added AutoPkg repos'
+else
+  fail 'Error adding AutoPkg repos'
+fi

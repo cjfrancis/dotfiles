@@ -1,0 +1,22 @@
+if [[ -e /usr/local/bin/zsh ]]; then
+  info 'Adding /usr/local/bin/zsh to /etc/shells...'
+  if echo '/usr/local/bin/zsh' | sudo tee -a /etc/shells; then
+    success '/usr/local/bin/zsh added to /etc/shells'
+
+    info 'Changing user shell to /usr/local/bin/zsh...'
+    if chsh -s /usr/local/bin/zsh; then
+      success 'User shell changed'
+    else
+      warn 'Error changing user shell'
+    fi
+  else
+    warn 'Error adding /usr/local/bin/zsh to /etc/shells'
+  fi
+fi
+
+info 'Creating user python site-packages directory...'
+if mkdir -p ~/Library/Python/2.7/lib/python/site-packages; then
+  success 'Created user python site-packages directory'
+else
+  warn 'Error creating user python site-packages directory'
+fi

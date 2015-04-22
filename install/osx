@@ -1,0 +1,25 @@
+if ! which brew >/dev/null; then
+  info 'Installing Homebrew...'
+  if ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; then
+    success 'Installed Homebrew'
+  else
+    fail 'Error installing Homebrew'
+  fi
+fi
+
+info 'Updating Homebrew formulas...'
+if brew update; then
+  success 'Formulas updated'
+else
+  warn 'Error updating Homebrew formulas'
+fi
+
+if ! which stow >/dev/null; then
+  info 'Installing stow...'
+  if brew install stow; then
+    success 'Installed stow'
+  else
+    fail 'Error installing stow'
+  fi
+fi
+

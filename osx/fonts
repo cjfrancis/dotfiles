@@ -1,0 +1,28 @@
+mkdir -p "${HOME}/Projects"
+
+if [[ ! -d "${HOME}/Projects/powerline_fonts" ]]; then
+  pushd "${HOME}/Projects"
+  info 'Cloning Powerline fonts...'
+  if git clone https://github.com/powerline/fonts.git powerline_fonts; then
+    success 'Cloned Powerline fonts'
+  else
+    fail 'Error cloning Powerline fonts'
+  fi
+  popd
+else
+  pushd "${HOME}/Projects/powerline_fonts"
+  info 'Updating Powerline fonts...'
+  if git pull origin master; then
+    success 'Updated Powerline fonts'
+  else
+    warn 'Error updating Powerline fonts'
+  fi
+  popd
+fi
+
+info 'Copying SourceCodePro Powerline font...'
+if cp "${HOME}/Projects/powerline_fonts/SourceCodePro"/*.otf "${HOME}/Library/Fonts"; then
+  success 'Copied SourceCodePro Powerline font'
+else
+  warn 'Error copying SourceCodePro Powerline font'
+fi

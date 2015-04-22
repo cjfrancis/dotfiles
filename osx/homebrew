@@ -1,0 +1,14 @@
+readonly FORMULAS=(
+  zsh
+  git
+)
+
+for formula in "${FORMULAS[@]}"; do
+  if ! brew list "${formula}" >/dev/null 2>&1; then
+    info "brew install ${formula}"
+    brew install "${formula}"
+  # else
+  #   info "brew upgrade ${formula}"
+  #   brew upgrade "${formula}" >/dev/null 2>&1
+  fi
+done

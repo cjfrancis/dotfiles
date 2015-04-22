@@ -1,0 +1,13 @@
+# Configure PATH
+path_additions=(
+  /opt/local/sbin
+  /Applications/Xcode.app/Contents/Developer/usr/bin
+  /opt/local/bin
+  ~/bin
+)
+
+for path_candidate in "${path_additions[@]}"; do
+  if [[ -d "${path_candidate}" ]]; then
+    export PATH="${PATH}":"${path_candidate}"
+  fi
+done
