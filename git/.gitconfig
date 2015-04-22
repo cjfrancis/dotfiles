@@ -57,6 +57,9 @@
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
 	ui = auto
 
+[credential]
+	helper = osxkeychain
+
 # URL shorthands
 
 [url "git@github.com:"]
