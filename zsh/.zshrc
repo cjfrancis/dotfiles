@@ -73,6 +73,6 @@ if [[ -r "${DOTFILES}/custom/functions" ]]; then
   source "${DOTFILES}/custom/functions"
 fi
 
-if [[ -r "${DOTFILES}/custom/extras" ]]; then
-  source "${DOTFILES}/custom/extras"
+if [[ -r "${DOTFILES}/custom/extra" ]]; then
+  source "${DOTFILES}/custom/extra"
 fi
